@@ -7,7 +7,7 @@
 ### To connect clients:
 - telnet localhost 3333 (port can be edited in config.json)
 
-### This CLI application is a chat server written in Go that meets the following criteria:
+### Software Requirements:
 - Multiple clients can connect to the server using Telnet
 - Clients are asked to enter their name upon server connection
 - Messages sent to the server are relayed to all connected clients
