@@ -15,7 +15,7 @@ This CLI application is a chat server written in Go that meets the following cri
 - All messages are logged to a local log file
 - Basic configuration settings like listening port, IP, and log file location are read from a local configuration file
 
-Resources: 
+Resources & 3rd party code used: 
 - Main chat functionality: https://rosettacode.org/wiki/Chat_server#Go 
 - Configuration file functionality: https://github.com/jamischarles/go-chat-server/blob/master/main.go 
 - Logging functionality: https://stackoverflow.com/a/51628140
