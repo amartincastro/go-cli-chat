@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net"
@@ -80,11 +81,21 @@ func (s *server) handleConns() {
 
 	var dropConn func(string)
 	writeAll := func(str string) {
-		log.Printf("Broadcast: %q", str)
+		// log.Printf("Broadcast: %q", str)
 		// TODO handle blocked connections
 		for name, c := range conns {
 			c.SetWriteDeadline(time.Now().Add(500 * time.Millisecond))
 			_, err := c.Write([]byte(str))
+
+			f, err := os.OpenFile("./messages.log", os.O_WRONLY|os.O_APPEND, 0666)
+			if err != nil {
+				log.Fatalf("error opening file: %v", err)
+			}
+			defer f.Close()
+			wrt := io.MultiWriter(os.Stdout, f)
+			log.SetOutput(wrt)
+			log.Println("Broadcast: %q", str)
+
 			if err != nil {
 				log.Printf("Error writing to %q: %v", name, err)
 				c.Close()
@@ -92,6 +103,7 @@ func (s *server) handleConns() {
 				// Defer all the disconnect messages until after
 				// we've closed all currently problematic conns.
 				defer dropConn(name)
+
 			}
 		}
 	}
