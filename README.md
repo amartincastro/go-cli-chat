@@ -19,8 +19,9 @@
 - Main chat functionality: https://rosettacode.org/wiki/Chat_server#Go 
 - Configuration file functionality: https://github.com/jamischarles/go-chat-server/blob/master/main.go 
 - Logging functionality: https://stackoverflow.com/a/51628140
+- Words of encouragement: Joel Guerra, Seth Voltz
 
 ### Known Bugs
 - Port blocking on Windows computers can prevent the application from being run twice in a row. Can be circumvented by editing the port in config.json on every subsequent run of the application
-- Messages sent to the server occasionally duplicate
+- Messages sent to the server duplicate based on number of clients connected
 - Backspaces and enters used in CLI requests sent to the server show up in chat relay and logs as unescaped characters. Future releases escape characters to avoid unintended messages and potential vulnerabilities
